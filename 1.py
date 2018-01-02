@@ -1,6 +1,7 @@
-def printText(s):
-    print(s)
+def sum(a, b):
+    return a, b, a+b
 
 
 if __name__ == '__main__':
-    printText("Hello, my dear friend!")
+    a, b, c = sum(1, 2)
+    print(str(a) + " + " + str(b) + " = " + str(c))
