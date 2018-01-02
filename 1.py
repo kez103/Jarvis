@@ -3,4 +3,4 @@ def printText(s):
 
 
 if __name__ == '__main__':
-    printText("Hello, my friend!")
+    printText("Hello, my dear friend!")
