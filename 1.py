@@ -3,5 +3,9 @@ def sum(a, b):
 
 
 if __name__ == '__main__':
-    a, b, c = sum(1, 2)
-    print(str(a) + " + " + str(b) + " = " + str(c))
+    # a, b, c = sum(1, 2)
+    # print(str(a) + " + " + str(b) + " = " + str(c))
+
+    li = ["dog", "cat", "bird"]
+    for c, li2 in enumerate(li, 1):
+        print(c, li2)
