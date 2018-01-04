@@ -3,20 +3,27 @@ import speech_recognition as sr
 import subprocess as sb
 
 r = sr.Recognizer()
-# r.energy_threshold = 1500000
-r.dynamic_energy_threshold = True  # type: bool
-r.dynamic_energy_adjustment_ratio = 1.1  # type: float
+r.dynamic_energy_threshold = False  # type: bool
+# r.energy_threshold = 1500
+# r.dynamic_energy_adjustment_ratio = 1.1  # type: float
 
 
 with sr.Microphone() as source:
 
+    # r.energy_threshold = 1500
+
     while True:
 
-        # r.adjust_for_ambient_noise(source, 2)
-        print("Скажите что-нибудь")
-        audio = r.listen(source)
-
         try:
+
+            r.adjust_for_ambient_noise(source)
+            # r.energy_threshold = 500
+            print("Скажите что-нибудь")
+            audio = r.listen(source=source, timeout=3, phrase_time_limit=3)
+            # r.energy_threshold = 1500
+            print(r.energy_threshold)  # type: float
+            # audio = r.listen(source=source)
+
             com = r.recognize_google(audio, language="ru-RU")
             if "узык" in com:
                 # sb.Popen("aimp3 /play", shell=True)
@@ -36,3 +43,6 @@ with sr.Microphone() as source:
 
         except sr.RequestError as e:
             print("Ошибка сервиса; {0}".format(e))
+
+        except sr.WaitTimeoutError:
+            pass
